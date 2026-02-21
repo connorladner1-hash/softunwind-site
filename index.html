@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soft Unwind — A short nightly ritual.</title>
+  <meta name="description" content="Can't sleep because your brain won't shut up? Soft Unwind is a short nightly ritual. Just enough to help your mind slow down." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0c12;
+      --bg2: #0f1118;
+      --surface: #161921;
+      --surface2: #1e2230;
+      --text: #e8e9f0;
+      --text-dim: #8a8fa8;
+      --text-dimmer: #4a4f65;
+      --accent: #a8b4d4;
+      --accent-soft: #c4cee8;
+      --btn-bg: #2a2f42;
+      --btn-hover: #353b52;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(10,12,18,0.95) 0%, transparent 100%);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(ellipse, rgba(80,100,160,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-bear {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 32px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Bear SVG placeholder — will render as emoji fallback */
+    .bear-emoji {
+      display: block;
+      width: 180px;
+      height: auto;
+      margin-bottom: 32px;
+      animation: float 4s ease-in-out infinite;
+      filter: drop-shadow(0 16px 40px rgba(80,100,160,0.25));
+    }
+
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dimmer);
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--text);
+      max-width: 680px;
+      margin-bottom: 20px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent-soft);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-dim);
+      max-width: 420px;
+      margin-bottom: 48px;
+      font-weight: 300;
+    }
+
+    .cta-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--btn-bg);
+      color: var(--text);
+      padding: 16px 36px;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--btn-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary svg {
+      width: 18px; height: 18px;
+    }
+
+    .hero-note {
+      font-size: 0.78rem;
+      color: var(--text-dimmer);
+      letter-spacing: 0.05em;
+    }
+
+    /* RAIN LINES decoration */
+    .rain-lines {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      opacity: 0.15;
+    }
+
+    .rain-lines span {
+      position: absolute;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+      animation: rain linear infinite;
+    }
+
+    @keyframes rain {
+      0% { transform: translateY(-100%); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    /* SCREENSHOTS SECTION */
+    .screens-section {
+      padding: 80px 24px;
+      text-align: center;
+      position: relative;
+    }
+
+    .section-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dimmer);
+      margin-bottom: 48px;
+    }
+
+    .screens-scroll {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .screen-card {
+      width: 200px;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: var(--surface);
+      aspect-ratio: 9/19.5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      transition: transform 0.3s;
+    }
+
+    .screen-card:hover { transform: translateY(-6px); }
+
+    .screen-card-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .screen-card-body {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+      text-align: left;
+    }
+
+    .screen-number {
+      font-size: 0.65rem;
+      color: var(--text-dimmer);
+      margin-bottom: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    /* FEATURES */
+    .features {
+      padding: 80px 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 20px;
+      padding: 32px;
+      transition: border-color 0.2s;
+    }
+
+    .feature-card:hover {
+      border-color: rgba(168,180,212,0.2);
+    }
+
+    .feature-icon {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+    }
+
+    .feature-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .feature-body {
+      font-size: 0.875rem;
+      color: var(--text-dim);
+      line-height: 1.65;
+    }
+
+    /* PHILOSOPHY */
+    .philosophy {
+      padding: 80px 24px;
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .philosophy h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 300;
+      line-height: 1.3;
+      margin-bottom: 24px;
+    }
+
+    .philosophy p {
+      font-size: 1rem;
+      color: var(--text-dim);
+      margin-bottom: 16px;
+    }
+
+    .pill {
+      display: inline-block;
+      background: var(--surface2);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin: 4px;
+    }
+
+    /* CTA FOOTER */
+    .cta-section {
+      padding: 80px 24px 120px;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      font-weight: 300;
+      margin-bottom: 12px;
+    }
+
+    .cta-section p {
+      color: var(--text-dim);
+      margin-bottom: 40px;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 32px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      color: var(--text-dimmer);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--text-dimmer);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text-dim); }
+
+    /* DIVIDER */
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+      margin: 0 auto 80px;
+    }
+
+    /* FADE IN */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">Soft Unwind</a>
+    <ul class="nav-links">
+      <li><a href="#how">How it works</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+    </ul>
+  </nav>
+
+  <!-- Rain decoration -->
+  <div class="rain-lines" id="rainLines"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img src="bear.png" alt="Soft Unwind bear" class="bear-emoji" />
+    <p class="hero-eyebrow">Available on iPhone</p>
+    <h1 class="hero-title">Can't sleep because your <em>brain won't shut up?</em></h1>
+    <p class="hero-sub">A short nightly ritual. Just enough to help your mind slow down.</p>
+    <div class="cta-group">
+      <a href="#" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Download on the App Store
+      </a>
+      <span class="hero-note">No streaks. No pressure. Just a softer night.</span>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="screens-section">
+    <p class="section-label">The ritual</p>
+    <div class="screens-scroll fade-in">
+      <div class="screen-card">
+        <p class="screen-number">01</p>
+        <p class="screen-card-title">Let it out.</p>
+        <p class="screen-card-body">No formatting. No judgment. Write whatever your mind is holding. This is just to empty.</p>
+      </div>
+      <div class="screen-card" style="margin-top: 24px;">
+        <p class="screen-number">02</p>
+        <p class="screen-card-title">Reflection.</p>
+        <p class="screen-card-body">AI hears what you shared and reflects it back with care. No advice. Just presence.</p>
+      </div>
+      <div class="screen-card">
+        <p class="screen-number">03</p>
+        <p class="screen-card-title">Let them drift.</p>
+        <p class="screen-card-body">Under a minute. Nothing to perfect. You don't need to stop your thoughts — just let them pass.</p>
+      </div>
+      <div class="screen-card" style="margin-top: 24px;">
+        <p class="screen-number">04</p>
+        <p class="screen-card-title">You did enough.</p>
+        <p class="screen-card-body">Rest is still progress. Nothing needs a decision tonight.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FEATURES -->
+  <section class="features fade-in">
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🧠</div>
+        <h3 class="feature-title">Brain dump, not therapy</h3>
+        <p class="feature-body">Type out what's swirling in your head. No structure required. The act of externalizing your thoughts is what calms them.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✨</div>
+        <h3 class="feature-title">AI that listens</h3>
+        <p class="feature-body">Your words are met with empathy, not solutions. The AI reflects what you shared so you feel heard — then guides you toward rest.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌙</div>
+        <h3 class="feature-title">Breathing, gently</h3>
+        <p class="feature-body">A brief, guided breath sequence closes out the ritual. Under a minute. No app can make you breathe, but this one can make it easy.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚫</div>
+        <h3 class="feature-title">No gamification</h3>
+        <p class="feature-body">No streaks. No reminders designed to guilt you. No badges. Just a softer night, whenever you need it.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PHILOSOPHY -->
+  <section class="philosophy fade-in">
+    <h2>Built for the nights your mind won't let go.</h2>
+    <p>Sleep hygiene advice is everywhere. What's rare is something that meets you exactly where you are at 11pm — anxious, ruminating, exhausted — and helps you land softly.</p>
+    <p>Soft Unwind isn't a sleep tracker. It's not a meditation library. It's a ritual.</p>
+    <div style="margin-top: 24px;">
+      <span class="pill">College students</span>
+      <span class="pill">Overthinkers</span>
+      <span class="pill">Anxious minds</span>
+      <span class="pill">Anyone who can't turn it off</span>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- BOTTOM CTA -->
+  <section class="cta-section fade-in">
+    <h2>Start tonight's wind down.</h2>
+    <p>A short nightly ritual. Just enough to help your mind slow down.</p>
+    <a href="#" class="btn-primary">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Download on the App Store
+    </a>
+  </section>
+
+  <footer>
+    <p>© 2026 Soft Unwind. All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="terms.html">Terms of Service</a></li>
+      <li><a href="support.html">Support</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    // Rain lines
+    const rain = document.getElementById('rainLines');
+    for (let i = 0; i < 20; i++) {
+      const line = document.createElement('span');
+      line.style.left = Math.random() * 100 + '%';
+      line.style.height = (40 + Math.random() * 80) + 'px';
+      line.style.animationDuration = (3 + Math.random() * 6) + 's';
+      line.style.animationDelay = (Math.random() * 8) + 's';
+      rain.appendChild(line);
+    }
+
+    // Fade in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

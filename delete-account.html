@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delete Account — Soft Unwind</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0c12; --surface: #161921; --text: #e8e9f0; --text-dim: #8a8fa8; --text-dimmer: #4a4f65; --accent: #a8b4d4; --btn-bg: #2a2f42; --danger: #c4504a; }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; }
+    nav { padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .nav-logo { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 300; color: var(--text); text-decoration: none; }
+    .nav-back { font-size: 0.85rem; color: var(--text-dim); text-decoration: none; }
+    .nav-back:hover { color: var(--text); }
+    main { max-width: 600px; margin: 0 auto; padding: 60px 24px 100px; }
+    .page-label { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dimmer); margin-bottom: 16px; }
+    h1 { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 300; margin-bottom: 8px; }
+    .subtitle { color: var(--text-dim); margin-bottom: 40px; font-size: 1rem; }
+    .info-box { background: var(--surface); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 24px; margin-bottom: 32px; }
+    .info-box h3 { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 400; margin-bottom: 10px; }
+    .info-box ul { color: var(--text-dim); font-size: 0.875rem; padding-left: 16px; }
+    .info-box li { margin-bottom: 6px; }
+    label { display: block; font-size: 0.875rem; color: var(--text-dim); margin-bottom: 6px; }
+    input, textarea, select {
+      width: 100%; background: var(--surface); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 12px 16px; color: var(--text);
+      font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 300;
+      margin-bottom: 20px; outline: none; transition: border-color 0.2s;
+    }
+    input:focus, textarea:focus, select:focus { border-color: rgba(168,180,212,0.4); }
+    textarea { height: 100px; resize: vertical; }
+    select option { background: #1e2230; }
+    .btn-danger {
+      display: inline-block; background: rgba(196,80,74,0.15); color: #e88884;
+      border: 1px solid rgba(196,80,74,0.3); padding: 14px 32px;
+      border-radius: 100px; font-size: 0.95rem; font-weight: 500;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: background 0.2s; width: 100%; text-align: center;
+    }
+    .btn-danger:hover { background: rgba(196,80,74,0.25); }
+    .or-divider { text-align: center; color: var(--text-dimmer); font-size: 0.85rem; margin: 20px 0; }
+    .btn-email {
+      display: block; text-align: center; background: var(--btn-bg); color: var(--text-dim);
+      border: 1px solid rgba(255,255,255,0.06); padding: 14px 32px;
+      border-radius: 100px; font-size: 0.9rem; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-email:hover { background: #353b52; }
+    .success { display: none; background: rgba(100,180,120,0.1); border: 1px solid rgba(100,180,120,0.2); border-radius: 16px; padding: 24px; text-align: center; }
+    .success h3 { font-family: 'Fraunces', serif; font-weight: 400; margin-bottom: 8px; color: #8ecca0; }
+    .success p { font-size: 0.875rem; color: var(--text-dim); }
+    a { color: var(--accent); }
+    footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 32px 40px; text-align: center; }
+    footer p { font-size: 0.8rem; color: var(--text-dimmer); }
+    footer a { color: var(--text-dim); text-decoration: none; margin: 0 12px; }
+    @media (max-width: 600px) { nav { padding: 16px 20px; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-logo">Soft Unwind</a>
+    <a href="index.html" class="nav-back">← Back</a>
+  </nav>
+  <main>
+    <p class="page-label">Account</p>
+    <h1>Delete Account</h1>
+    <p class="subtitle">We're sorry to see you go. Your data will be permanently deleted within 30 days of your request.</p>
+
+    <div class="info-box">
+      <h3>What gets deleted</h3>
+      <ul>
+        <li>Your account and login credentials</li>
+        <li>Any saved journal history or reflection data</li>
+        <li>App preferences and settings</li>
+        <li>Usage data tied to your account</li>
+      </ul>
+    </div>
+
+    <div id="formWrap">
+      <label for="email">Email address associated with your account</label>
+      <input type="email" id="email" placeholder="you@example.com" />
+
+      <label for="reason">Reason for leaving (optional)</label>
+      <select id="reason">
+        <option value="">Select a reason…</option>
+        <option>I no longer use the app</option>
+        <option>Privacy concerns</option>
+        <option>Switching to a different app</option>
+        <option>Technical issues</option>
+        <option>Other</option>
+      </select>
+
+      <label for="notes">Additional notes (optional)</label>
+      <textarea id="notes" placeholder="Anything else you'd like us to know…"></textarea>
+
+      <button class="btn-danger" onclick="submitDeletion()">Request Account Deletion</button>
+
+      <div class="or-divider">or</div>
+      <a href="mailto:support@softunwind.app?subject=Account Deletion Request" class="btn-email">Email us directly at support@softunwind.app</a>
+    </div>
+
+    <div class="success" id="successMsg">
+      <h3>Request received.</h3>
+      <p>We've received your deletion request. Your account and data will be permanently deleted within 30 days. You'll receive a confirmation email shortly.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="support.html">Support</a>
+      <a href="terms.html">Terms</a>
+    </p>
+    <p style="margin-top: 12px;">© 2026 Soft Unwind</p>
+  </footer>
+
+  <script>
+    function submitDeletion() {
+      const email = document.getElementById('email').value.trim();
+      if (!email || !email.includes('@')) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+      // In production: send to your backend/form service
+      // For now, construct a mailto as fallback
+      const reason = document.getElementById('reason').value;
+      const notes = document.getElementById('notes').value;
+      const subject = encodeURIComponent('Account Deletion Request');
+      const body = encodeURIComponent(`Email: ${email}\nReason: ${reason}\nNotes: ${notes}`);
+      window.location.href = `mailto:support@softunwind.app?subject=${subject}&body=${body}`;
+      document.getElementById('formWrap').style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

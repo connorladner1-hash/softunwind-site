@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Soft Unwind</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0c12; --surface: #161921; --surface2: #1e2230;
+      --text: #e8e9f0; --text-dim: #8a8fa8; --text-dimmer: #4a4f65;
+      --accent: #a8b4d4; --btn-bg: #2a2f42;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; }
+    nav { padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .nav-logo { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 300; color: var(--text); text-decoration: none; }
+    .nav-back { font-size: 0.85rem; color: var(--text-dim); text-decoration: none; }
+    .nav-back:hover { color: var(--text); }
+    main { max-width: 720px; margin: 0 auto; padding: 60px 24px 100px; }
+    .page-label { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dimmer); margin-bottom: 16px; }
+    h1 { font-family: 'Fraunces', serif; font-size: 2.4rem; font-weight: 300; margin-bottom: 8px; }
+    .subtitle { color: var(--text-dim); margin-bottom: 48px; font-size: 1rem; }
+    /* Contact card */
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 32px;
+      margin-bottom: 48px;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .contact-icon { font-size: 1.8rem; flex-shrink: 0; margin-top: 2px; }
+    .contact-title { font-family: 'Fraunces', serif; font-size: 1.15rem; margin-bottom: 6px; }
+    .contact-body { font-size: 0.9rem; color: var(--text-dim); margin-bottom: 16px; }
+    .btn {
+      display: inline-block;
+      background: var(--btn-bg);
+      color: var(--text);
+      padding: 12px 24px;
+      border-radius: 100px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.2s;
+    }
+    .btn:hover { background: #353b52; }
+    /* FAQ */
+    h2 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 300; margin-bottom: 24px; }
+    .faq-item {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 20px 0;
+    }
+    .faq-q {
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-q .toggle { color: var(--text-dimmer); font-weight: 300; font-size: 1.2rem; }
+    .faq-a { font-size: 0.9rem; color: var(--text-dim); display: none; padding-top: 4px; }
+    .faq-a.open { display: block; }
+    a { color: var(--accent); }
+    footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 32px 40px; text-align: center; }
+    footer p { font-size: 0.8rem; color: var(--text-dimmer); }
+    footer a { color: var(--text-dim); text-decoration: none; margin: 0 12px; }
+    @media (max-width: 600px) { nav { padding: 16px 20px; } .contact-card { flex-direction: column; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-logo">Soft Unwind</a>
+    <a href="index.html" class="nav-back">← Back</a>
+  </nav>
+  <main>
+    <p class="page-label">Help</p>
+    <h1>Support</h1>
+    <p class="subtitle">We're here to help. Expect a reply within 1–2 business days.</p>
+
+    <div class="contact-card">
+      <div class="contact-icon">✉️</div>
+      <div>
+        <p class="contact-title">Email Support</p>
+        <p class="contact-body">For bugs, questions, feedback, or account help — email us directly. Please include your device model and iOS version for technical issues.</p>
+        <a href="mailto:support@softunwind.app" class="btn">support@softunwind.app</a>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-icon">🗑️</div>
+      <div>
+        <p class="contact-title">Delete My Account & Data</p>
+        <p class="contact-body">Want to delete your account and all associated data? We'll take care of it within 30 days.</p>
+        <a href="delete-account.html" class="btn">Request account deletion →</a>
+      </div>
+    </div>
+
+    <h2>Frequently asked questions</h2>
+
+    <div class="faq-item">
+      <p class="faq-q" onclick="toggleFaq(this)">What exactly does Soft Unwind do? <span class="toggle">+</span></p>
+      <p class="faq-a">Soft Unwind is a short nightly ritual designed to help your mind slow down before sleep. You write out what's on your mind (no formatting, no judgment), receive an empathetic AI reflection, do a brief breathing exercise, and close out with a calming message.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q" onclick="toggleFaq(this)">Is my journal data private? <span class="toggle">+</span></p>
+      <p class="faq-a">Yes. What you write is sent to an AI to generate your reflection, then discarded — we don't store your entries on our servers after your session unless you've enabled history. We never sell your data. See our <a href="privacy.html">Privacy Policy</a> for full details.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q" onclick="toggleFaq(this)">The app isn't responding or the AI reflection isn't loading. <span class="toggle">+</span></p>
+      <p class="faq-a">First, make sure you have an internet connection — the AI reflection requires network access. Try force-quitting the app and reopening it. If the problem persists, email us at support@softunwind.app with your device and iOS version.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q" onclick="toggleFaq(this)">How do I cancel my subscription? <span class="toggle">+</span></p>
+      <p class="faq-a">Subscriptions are managed through Apple. Go to Settings → [Your Name] → Subscriptions on your iPhone, find Soft Unwind, and tap Cancel Subscription. You'll retain access until the end of the billing period.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q" onclick="toggleFaq(this)">Is this a replacement for therapy or medical treatment? <span class="toggle">+</span></p>
+      <p class="faq-a">No. Soft Unwind is a wellness tool, not a medical product. If you're experiencing significant anxiety, sleep disorders, or mental health challenges, please consult a qualified healthcare professional. If you're in crisis, please reach the 988 Suicide & Crisis Lifeline by calling or texting 988.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q" onclick="toggleFaq(this)">I want to provide product feedback or suggest a feature. <span class="toggle">+</span></p>
+      <p class="faq-a">We'd love to hear from you. Email us at support@softunwind.app with the subject "Feedback" and tell us what you're thinking.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q" onclick="toggleFaq(this)">How do I restore a purchase? <span class="toggle">+</span></p>
+      <p class="faq-a">Open Soft Unwind and look for a "Restore Purchases" option in the settings or subscription screen. If you don't see it, email us and we'll help you sort it out.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="delete-account.html">Delete Account</a>
+    </p>
+    <p style="margin-top: 12px;">© 2026 Soft Unwind</p>
+  </footer>
+
+  <script>
+    function toggleFaq(el) {
+      const answer = el.nextElementSibling;
+      const toggle = el.querySelector('.toggle');
+      answer.classList.toggle('open');
+      toggle.textContent = answer.classList.contains('open') ? '−' : '+';
+    }
+  </script>
+</body>
+</html>
