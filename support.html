@@ -23,48 +23,39 @@
     .page-label { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dimmer); margin-bottom: 16px; }
     h1 { font-family: 'Fraunces', serif; font-size: 2.4rem; font-weight: 300; margin-bottom: 8px; }
     .subtitle { color: var(--text-dim); margin-bottom: 48px; font-size: 1rem; }
-    /* Contact card */
     .contact-card {
-      background: var(--surface);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 20px;
-      padding: 32px;
-      margin-bottom: 48px;
-      display: flex;
-      align-items: flex-start;
-      gap: 20px;
+      background: var(--surface); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px; padding: 32px; margin-bottom: 48px;
+      display: flex; align-items: flex-start; gap: 20px;
     }
     .contact-icon { font-size: 1.8rem; flex-shrink: 0; margin-top: 2px; }
     .contact-title { font-family: 'Fraunces', serif; font-size: 1.15rem; margin-bottom: 6px; }
     .contact-body { font-size: 0.9rem; color: var(--text-dim); margin-bottom: 16px; }
+    .email-row {
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    }
+    .email-address {
+      font-size: 0.95rem; color: var(--accent); font-weight: 500;
+    }
+    .copy-btn {
+      background: var(--btn-bg); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 100px; padding: 8px 16px; cursor: pointer;
+      color: var(--text-dim); font-size: 0.8rem; font-family: 'DM Sans', sans-serif;
+      transition: background 0.2s, color 0.2s;
+    }
+    .copy-btn:hover { background: #353b52; color: var(--text); }
     .btn {
-      display: inline-block;
-      background: var(--btn-bg);
-      color: var(--text);
-      padding: 12px 24px;
-      border-radius: 100px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.06);
+      display: inline-block; background: var(--btn-bg); color: var(--text);
+      padding: 12px 24px; border-radius: 100px; font-size: 0.875rem;
+      font-weight: 500; text-decoration: none; border: 1px solid rgba(255,255,255,0.06);
       transition: background 0.2s;
     }
     .btn:hover { background: #353b52; }
-    /* FAQ */
     h2 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 300; margin-bottom: 24px; }
-    .faq-item {
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      padding: 20px 0;
-    }
+    .faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); padding: 20px 0; }
     .faq-q {
-      font-weight: 500;
-      font-size: 0.95rem;
-      margin-bottom: 8px;
-      color: var(--text);
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      font-weight: 500; font-size: 0.95rem; margin-bottom: 8px; color: var(--text);
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center;
     }
     .faq-q .toggle { color: var(--text-dimmer); font-weight: 300; font-size: 1.2rem; }
     .faq-a { font-size: 0.9rem; color: var(--text-dim); display: none; padding-top: 4px; }
@@ -91,7 +82,10 @@
       <div>
         <p class="contact-title">Email Support</p>
         <p class="contact-body">For bugs, questions, feedback, or account help — email us directly. Please include your device model and iOS version for technical issues.</p>
-        <a href="mailto:ryan@softunwind.app" class="btn">ryan@softunwind.app</a>
+        <div class="email-row">
+          <span class="email-address">connor@softunwind.app</span>
+          <button class="copy-btn" onclick="copyEmail(this)">Copy address</button>
+        </div>
       </div>
     </div>
 
@@ -110,37 +104,30 @@
       <p class="faq-q" onclick="toggleFaq(this)">What exactly does Soft Unwind do? <span class="toggle">+</span></p>
       <p class="faq-a">Soft Unwind is a short nightly ritual designed to help your mind slow down before sleep. You write out what's on your mind (no formatting, no judgment), receive an empathetic AI reflection, do a brief breathing exercise, and close out with a calming message.</p>
     </div>
-
     <div class="faq-item">
       <p class="faq-q" onclick="toggleFaq(this)">Is my journal data private? <span class="toggle">+</span></p>
-      <p class="faq-a">Yes. What you write is sent to an AI to generate your reflection, then discarded — we don't store your entries on our servers after your session unless you've enabled history. We never sell your data. See our <a href="privacy.html">Privacy Policy</a> for full details.</p>
+      <p class="faq-a">Yes. What you write is sent to an AI to generate your reflection, then discarded — we don't store your entries after your session. We never sell your data. See our <a href="privacy.html">Privacy Policy</a> for full details.</p>
     </div>
-
     <div class="faq-item">
       <p class="faq-q" onclick="toggleFaq(this)">The app isn't responding or the AI reflection isn't loading. <span class="toggle">+</span></p>
-      <p class="faq-a">First, make sure you have an internet connection — the AI reflection requires network access. Try force-quitting the app and reopening it. If the problem persists, email us at ryan@softunwind.app with your device and iOS version.</p>
+      <p class="faq-a">First, make sure you have an internet connection — the AI reflection requires network access. Try force-quitting the app and reopening it. If the problem persists, copy our email above and send us your device model and iOS version.</p>
     </div>
-
     <div class="faq-item">
       <p class="faq-q" onclick="toggleFaq(this)">How do I cancel my subscription? <span class="toggle">+</span></p>
       <p class="faq-a">Subscriptions are managed through Apple. Go to Settings → [Your Name] → Subscriptions on your iPhone, find Soft Unwind, and tap Cancel Subscription. You'll retain access until the end of the billing period.</p>
     </div>
-
     <div class="faq-item">
       <p class="faq-q" onclick="toggleFaq(this)">Is this a replacement for therapy or medical treatment? <span class="toggle">+</span></p>
       <p class="faq-a">No. Soft Unwind is a wellness tool, not a medical product. If you're experiencing significant anxiety, sleep disorders, or mental health challenges, please consult a qualified healthcare professional. If you're in crisis, please reach the 988 Suicide & Crisis Lifeline by calling or texting 988.</p>
     </div>
-
     <div class="faq-item">
-      <p class="faq-q" onclick="toggleFaq(this)">I want to provide product feedback or suggest a feature. <span class="toggle">+</span></p>
-      <p class="faq-a">We'd love to hear from you. Email us at ryan@softunwind.app with the subject "Feedback" and tell us what you're thinking.</p>
+      <p class="faq-q" onclick="toggleFaq(this)">I want to provide feedback or suggest a feature. <span class="toggle">+</span></p>
+      <p class="faq-a">We'd love to hear from you. Copy our email above and send us a note with the subject "Feedback."</p>
     </div>
-
     <div class="faq-item">
       <p class="faq-q" onclick="toggleFaq(this)">How do I restore a purchase? <span class="toggle">+</span></p>
       <p class="faq-a">Open Soft Unwind and look for a "Restore Purchases" option in the settings or subscription screen. If you don't see it, email us and we'll help you sort it out.</p>
     </div>
-
   </main>
 
   <footer>
@@ -159,6 +146,12 @@
       const toggle = el.querySelector('.toggle');
       answer.classList.toggle('open');
       toggle.textContent = answer.classList.contains('open') ? '−' : '+';
+    }
+    function copyEmail(btn) {
+      navigator.clipboard.writeText('connor@softunwind.app').then(() => {
+        btn.textContent = '✓ Copied!';
+        setTimeout(() => btn.textContent = 'Copy address', 2000);
+      });
     }
   </script>
 </body>
